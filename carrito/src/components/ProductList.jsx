@@ -8,17 +8,13 @@ const ProductList = ({ addToCart }) => {
     { id: 4, name: 'Pan Tajado', price: 7000, image: 'https://megaredil.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzczMzkyLCJwdXIiOiJibG9iX2lkIn19--fff2b51d1da8e0a706d931ff1a270fc65dbf40eb/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJ3ZWJwIiwicmVzaXplX3RvX2ZpdCI6WzYwMCw2MDBdfSwicHVyIjoidmFyaWF0aW9uIn19--f071e30ecad735fd2ab55c9d9f5412fe02d64321/1458284.png?locale=es' }
   ];
 
-  // Estado para manejar las cantidades
   const [quantities, setQuantities] = useState(
-    products.reduce((acc, product) => ({ ...acc, [product.id]: 1 }), {}) // Inicializa cantidad en 1 para cada producto
+    products.reduce((acc, product) => ({ ...acc, [product.id]: 1 }), {}) 
   );
-
-  // Función para incrementar la cantidad de un producto
   const handleIncrement = (productId) => {
     setQuantities({ ...quantities, [productId]: quantities[productId] + 1 });
   };
 
-  // Función para decrementar la cantidad de un producto
   const handleDecrement = (productId) => {
     if (quantities[productId] > 1) {
       setQuantities({ ...quantities, [productId]: quantities[productId] - 1 });

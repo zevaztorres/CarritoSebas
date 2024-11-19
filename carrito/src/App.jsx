@@ -8,34 +8,28 @@ import './App.css';
 function App() {
   const [cart, setCart] = useState([]);
 
-  // Función para agregar productos al carrito
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingProduct = prevCart.find(item => item.id === product.id);
       if (existingProduct) {
-        // Si el producto ya está en el carrito, sumamos la nueva cantidad
         return prevCart.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + product.quantity }
             : item
         );
       }
-      // Si no está en el carrito, lo agregamos
       return [...prevCart, product];
     });
   };
 
-  // Función para eliminar productos del carrito
   const removeFromCart = (productId) => {
     setCart((prevCart) => {
       return prevCart.reduce((acc, item) => {
         if (item.id === productId) {
-          // Si el producto tiene más de 1 cantidad, disminuimos la cantidad
           if (item.quantity > 1) {
             acc.push({ ...item, quantity: item.quantity - 1 });
           }
         } else {
-          // Dejamos los demás productos iguales
           acc.push(item);
         }
         return acc;
